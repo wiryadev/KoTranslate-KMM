@@ -82,3 +82,10 @@ android {
         targetSdk = 32
     }
 }
+
+sqldelight {
+    database("TranslateDatabase") {
+        packageName = "com.wiryadev.kotranslate.database"
+        sourceFolders = listOf("sqldelight")
+    }
+}
