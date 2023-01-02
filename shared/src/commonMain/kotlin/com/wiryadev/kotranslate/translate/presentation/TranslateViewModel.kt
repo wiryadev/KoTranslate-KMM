@@ -27,7 +27,7 @@ class TranslateViewModel(
     ) { state, history ->
         if (state.history != history) {
             state.copy(
-                history = history.mapNotNull { item ->
+                history = history.map { item ->
                     UiHistoryItem(
                         id = item.id,
                         fromLanguage = UiLanguage.byCode(item.fromLanguageCode),

@@ -13,11 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.wiryadev.kotranslate.android.core.theme.LightBlue
 import com.wiryadev.kotranslate.core.presentation.UiLanguage
-import com.wiryadev.kotranslate.android.R as AndroidRes
+import com.wiryadev.kotranslate.android.R
 
 @Composable
 fun LanguageDropDown(
@@ -58,11 +59,14 @@ fun LanguageDropDown(
         Text(
             text = selectedLanguage.language.langName,
             color = LightBlue,
+            overflow = TextOverflow.Clip,
         )
         Icon(
-            imageVector = if (isOpen) Icons.Rounded.ArrowDropUp else Icons.Rounded.ArrowDropDown,
+            imageVector = if (isOpen) {
+                Icons.Rounded.ArrowDropUp
+            } else Icons.Rounded.ArrowDropDown,
             contentDescription = stringResource(
-                id = if (isOpen) AndroidRes.string.close else AndroidRes.string.open
+                id = if (isOpen) R.string.close else R.string.open
             ),
             tint = LightBlue,
             modifier = Modifier.size(30.dp),
