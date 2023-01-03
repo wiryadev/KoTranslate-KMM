@@ -1,5 +1,6 @@
 package com.wiryadev.kotranslate.android.translate.presentation
 
+import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,6 +20,8 @@ import com.wiryadev.kotranslate.android.translate.presentation.components.Transl
 import com.wiryadev.kotranslate.translate.presentation.TranslateEvent
 import com.wiryadev.kotranslate.translate.presentation.TranslateState
 import com.wiryadev.kotranslate.android.R
+import com.wiryadev.kotranslate.android.translate.presentation.components.rememberTextToSpeech
+import java.util.*
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -81,6 +84,7 @@ fun TranslateScreen(
             item {
                 val clipboardManager = LocalClipboardManager.current
                 val keyboardController = LocalSoftwareKeyboardController.current
+                val tts = rememberTextToSpeech()
 
                 TranslateTextField(
                     fromText = state.fromText,
@@ -111,7 +115,13 @@ fun TranslateScreen(
                         onEvent(TranslateEvent.CloseTranslation)
                     },
                     onSpeakerClick = {
-
+                        tts.language = state.toLanguage.toLocale() ?: Locale.ENGLISH
+                        tts.speak(
+                            state.toText,
+                            TextToSpeech.QUEUE_FLUSH,
+                            null,
+                            null,
+                        )
                     },
                     onTextFieldClick = {
                         onEvent(TranslateEvent.EditTranslation)
