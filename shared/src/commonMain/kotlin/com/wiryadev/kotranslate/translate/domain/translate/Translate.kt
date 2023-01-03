@@ -22,7 +22,7 @@ class Translate(
         )
         historyDataSource.insertHistoryItem(
             HistoryItem(
-                id = 0,
+                id = null,
                 fromLanguageCode = fromLanguage.langCode,
                 fromText = text,
                 toLanguageCode = toLanguage.langCode,

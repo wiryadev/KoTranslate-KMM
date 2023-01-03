@@ -1,7 +1,7 @@
 package com.wiryadev.kotranslate.translate.domain.history
 
 data class HistoryItem(
-    val id: Long,
+    val id: Long?,
     val fromLanguageCode: String,
     val fromText: String,
     val toLanguageCode: String,
