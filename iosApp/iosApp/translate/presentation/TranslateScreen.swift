@@ -45,6 +45,23 @@ struct TranslateScreen: View {
                 }
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.background)
+                
+                TranslateTextField(
+                    fromText: Binding(get: {
+                        viewModel.state.fromText
+                    }, set: { value in
+                        viewModel.onEvent(event: TranslateEvent.ChangeTranslationText(text: value))
+                    }),
+                    fromLanguage: viewModel.state.fromLanguage,
+                    toText: viewModel.state.toText,
+                    toLanguage: viewModel.state.toLanguage,
+                    isTranslating: viewModel.state.isTranslating,
+                    onTranslateEvent: { event in
+                        viewModel.onEvent(event: event)
+                    }
+                )
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.background)
             }
             .listStyle(.plain)
             .buttonStyle(.plain)

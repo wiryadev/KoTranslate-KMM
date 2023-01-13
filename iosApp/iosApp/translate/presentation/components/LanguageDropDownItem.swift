@@ -21,7 +21,7 @@ struct LanguageDropDownItem: View {
                     Image(uiImage: image)
                         .resizable()
                         .frame(width: 40, height: 40)
-                        .padding(.trailing, 5)
+                        .padding(.trailing, 6)
                     Text(language.language.langName)
                         .foregroundColor(.textBlack)
                 }
