@@ -6,8 +6,8 @@ import com.wiryadev.kotranslate.translate.domain.translate.TranslateError
 data class TranslateState(
     val fromText: String = "",
     val toText: String? = null,
-    val fromLanguage: UiLanguage = UiLanguage.byCode("en"),
-    val toLanguage: UiLanguage = UiLanguage.byCode("id"),
+    val fromLanguage: UiLanguage = UiLanguage.byCode("id"),
+    val toLanguage: UiLanguage = UiLanguage.byCode("en"),
     val isChoosingFromLanguage: Boolean = false,
     val isChoosingToLanguage: Boolean = false,
     val isTranslating: Boolean = false,
