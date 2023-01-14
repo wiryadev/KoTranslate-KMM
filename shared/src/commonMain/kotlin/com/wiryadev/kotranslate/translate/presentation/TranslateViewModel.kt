@@ -1,7 +1,7 @@
 package com.wiryadev.kotranslate.translate.presentation
 
 import com.wiryadev.kotranslate.core.domain.util.Resource
-import com.wiryadev.kotranslate.core.domain.util.toCommonStateFlow
+import com.wiryadev.kotranslate.core.domain.util.asCommonStateFlow
 import com.wiryadev.kotranslate.core.presentation.UiLanguage
 import com.wiryadev.kotranslate.translate.domain.history.HistoryDataSource
 import com.wiryadev.kotranslate.translate.domain.translate.Translate
@@ -44,7 +44,7 @@ class TranslateViewModel(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = TranslateState(),
-    ).toCommonStateFlow()
+    ).asCommonStateFlow()
 
     private var translateJob: Job? = null
 

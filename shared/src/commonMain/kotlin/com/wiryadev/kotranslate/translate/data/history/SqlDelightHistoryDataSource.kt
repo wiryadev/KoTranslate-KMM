@@ -3,7 +3,7 @@ package com.wiryadev.kotranslate.translate.data.history
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.wiryadev.kotranslate.core.domain.util.CommonFlow
-import com.wiryadev.kotranslate.core.domain.util.toCommonFlow
+import com.wiryadev.kotranslate.core.domain.util.asCommonFlow
 import com.wiryadev.kotranslate.database.TranslateDatabase
 import com.wiryadev.kotranslate.translate.domain.history.HistoryDataSource
 import com.wiryadev.kotranslate.translate.domain.history.HistoryItem
@@ -22,7 +22,7 @@ class SqlDelightHistoryDataSource(
             .asFlow()
             .mapToList()
             .map { it.map(HistoryEntity::toHistoryItem) }
-            .toCommonFlow()
+            .asCommonFlow()
     }
 
     override suspend fun insertHistoryItem(item: HistoryItem) {
