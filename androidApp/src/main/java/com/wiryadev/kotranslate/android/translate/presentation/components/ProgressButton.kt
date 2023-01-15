@@ -5,6 +5,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,7 +32,16 @@ fun ProgressButton(
             .clip(RoundedCornerShape(100))
             .background(MaterialTheme.colors.primary)
             .clickable(onClick = onClick)
-            .padding(8.dp),
+            .padding(
+                if (isLoading) {
+                    PaddingValues(all = 8.dp)
+                } else {
+                    PaddingValues(
+                        vertical = 8.dp,
+                        horizontal = 16.dp,
+                    )
+                }
+            ),
     ) {
         AnimatedContent(targetState = isLoading) { isLoading ->
             if (isLoading) {

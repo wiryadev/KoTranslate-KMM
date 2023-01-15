@@ -6,7 +6,7 @@ interface VoiceToTextParser {
 
     val state: CommonStateFlow<VoiceToTextParserState>
 
-    fun startLanguage(languageCode: String)
+    fun startListening(languageCode: String)
     fun stopListening()
     fun cancel()
     fun reset()

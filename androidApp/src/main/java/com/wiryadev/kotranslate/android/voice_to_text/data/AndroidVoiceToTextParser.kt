@@ -24,7 +24,7 @@ class AndroidVoiceToTextParser(
     override val state: CommonStateFlow<VoiceToTextParserState>
         get() = _state.asCommonStateFlow()
 
-    override fun startLanguage(languageCode: String) {
+    override fun startListening(languageCode: String) {
         _state.update { VoiceToTextParserState() }
 
         if (!SpeechRecognizer.isRecognitionAvailable(application)) {
@@ -84,6 +84,9 @@ class AndroidVoiceToTextParser(
     }
 
     override fun onError(errorCode: Int) {
+        if (errorCode == SpeechRecognizer.ERROR_CLIENT) {
+            return
+        }
         _state.update { it.copy(error = "Error: $errorCode") }
     }
 
