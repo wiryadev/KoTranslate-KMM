@@ -17,6 +17,8 @@
 		430ADF8C29714BCA00F732A7 /* TranslateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430ADF8B29714BCA00F732A7 /* TranslateTextField.swift */; };
 		430ADF8E297186B600F732A7 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430ADF8D297186B600F732A7 /* TextToSpeech.swift */; };
 		430ADF90297198C700F732A7 /* TranslateHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430ADF8F297198C700F732A7 /* TranslateHistoryItem.swift */; };
+		4353373529752292008B111E /* MicPowerObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4353373429752292008B111E /* MicPowerObserver.swift */; };
+		435337372975343B008B111E /* IosVoiceToTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435337362975343B008B111E /* IosVoiceToTextParser.swift */; };
 		43EEA162296FC88300A3E7AC /* LanguageDropDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEA161296FC88300A3E7AC /* LanguageDropDownItem.swift */; };
 		43EEA164296FE68D00A3E7AC /* LanguageDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEA163296FE68D00A3E7AC /* LanguageDropDown.swift */; };
 		43EEA166296FE8CA00A3E7AC /* SmallLanguageIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EEA165296FE8CA00A3E7AC /* SmallLanguageIcon.swift */; };
@@ -38,6 +40,8 @@
 		430ADF8B29714BCA00F732A7 /* TranslateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTextField.swift; sourceTree = "<group>"; };
 		430ADF8D297186B600F732A7 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		430ADF8F297198C700F732A7 /* TranslateHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateHistoryItem.swift; sourceTree = "<group>"; };
+		4353373429752292008B111E /* MicPowerObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicPowerObserver.swift; sourceTree = "<group>"; };
+		435337362975343B008B111E /* IosVoiceToTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosVoiceToTextParser.swift; sourceTree = "<group>"; };
 		43EEA161296FC88300A3E7AC /* LanguageDropDownItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDropDownItem.swift; sourceTree = "<group>"; };
 		43EEA163296FE68D00A3E7AC /* LanguageDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDropDown.swift; sourceTree = "<group>"; };
 		43EEA165296FE8CA00A3E7AC /* SmallLanguageIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLanguageIcon.swift; sourceTree = "<group>"; };
@@ -87,6 +91,23 @@
 				430ADF852971453E00F732A7 /* GradientSurface.swift */,
 			);
 			path = presentation;
+			sourceTree = "<group>";
+		};
+		435337322975218D008B111E /* voice_to_text */ = {
+			isa = PBXGroup;
+			children = (
+				435337332975219D008B111E /* data */,
+			);
+			path = voice_to_text;
+			sourceTree = "<group>";
+		};
+		435337332975219D008B111E /* data */ = {
+			isa = PBXGroup;
+			children = (
+				4353373429752292008B111E /* MicPowerObserver.swift */,
+				435337362975343B008B111E /* IosVoiceToTextParser.swift */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 		43EEA15E296FC84A00A3E7AC /* translate */ = {
@@ -152,6 +173,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				435337322975218D008B111E /* voice_to_text */,
 				43EEA15E296FC84A00A3E7AC /* translate */,
 				43062FCB2966BAE5001F5F33 /* core */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
@@ -308,6 +330,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				430ADF862971453E00F732A7 /* GradientSurface.swift in Sources */,
 				43EEA162296FC88300A3E7AC /* LanguageDropDownItem.swift in Sources */,
+				435337372975343B008B111E /* IosVoiceToTextParser.swift in Sources */,
 				430ADF882971470500F732A7 /* LanguageDisplay.swift in Sources */,
 				43EEA166296FE8CA00A3E7AC /* SmallLanguageIcon.swift in Sources */,
 				43EEA16A296FEC2E00A3E7AC /* IosTranslateViewModel.swift in Sources */,
@@ -319,6 +342,7 @@
 				43062FCF2966BBE3001F5F33 /* Color.swift in Sources */,
 				430ADF90297198C700F732A7 /* TranslateHistoryItem.swift in Sources */,
 				430ADF8C29714BCA00F732A7 /* TranslateTextField.swift in Sources */,
+				4353373529752292008B111E /* MicPowerObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
