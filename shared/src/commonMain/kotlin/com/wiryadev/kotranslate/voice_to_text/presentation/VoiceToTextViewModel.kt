@@ -78,6 +78,7 @@ class VoiceToTextViewModel(
         if (state.value.displayState == DisplayState.SPEAKING) {
             parser.stopListening()
         } else {
+            _state.update { it.copy(spokenText = "") }
             parser.startListening(languageCode)
         }
     }

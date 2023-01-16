@@ -42,6 +42,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone permission is used to determine your speech volume</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Needed to transcribe translation audio</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 </dict>

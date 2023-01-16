@@ -15,6 +15,8 @@ struct TranslateScreen: View {
     private var translate: Translate
     @ObservedObject var viewModel: IosTranslateViewModel
     
+    private let parser = IosVoiceToTextParser()
+    
     init(historyDataSource: HistoryDataSource, translate: Translate) {
         self.historyDataSource = historyDataSource
         self.translate = translate
@@ -94,7 +96,13 @@ struct TranslateScreen: View {
             VStack {
                 Spacer()
                 NavigationLink {
-                    Text("Voice To Text Screen")
+                    VoiceToTextScreen(
+                        onResult: { spokenText in
+                            viewModel.onEvent(event: TranslateEvent.SubmitVoiceResult(result: spokenText))
+                        },
+                        parser: parser,
+                        languageCode: viewModel.state.fromLanguage.language.langCode
+                    )
                 } label: {
                     ZStack {
                         Circle()
@@ -105,7 +113,7 @@ struct TranslateScreen: View {
                     }
                     .frame(maxWidth: 100, maxHeight: 100)
                 }
-
+                
             }
         }
         .onAppear {

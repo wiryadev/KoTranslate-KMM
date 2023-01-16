@@ -28,7 +28,13 @@ class IosVoiceToTextViewModel: ObservableObject {
     init(parser: VoiceToTextParser, languageCode: String) {
         self.parser = parser
         self.languageCode = languageCode
-        self.viewModel = VoiceToTextViewModel(parser: self.parser, coroutineScope: nil)
+        self.viewModel = VoiceToTextViewModel(parser: parser, coroutineScope: nil)
+        self.viewModel.onEvent(
+            event: VoiceToTextEvent.PermissionResult(
+                isGranted: true,
+                isPermanentlyDeclined: false
+            )
+        )
     }
     
     func onEvent(event: VoiceToTextEvent) {

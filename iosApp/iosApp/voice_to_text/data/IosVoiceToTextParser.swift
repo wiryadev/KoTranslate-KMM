@@ -37,7 +37,7 @@ class IosVoiceToTextParser: VoiceToTextParser, ObservableObject {
     private var audioSession: AVAudioSession?
     
     func cancel() {
-        // no op
+        // no op in iOS
     }
     
     func reset() {
@@ -57,9 +57,10 @@ class IosVoiceToTextParser: VoiceToTextParser, ObservableObject {
         let supportedLocale = SFSpeechRecognizer.supportedLocales().contains(chosenLocale)
                                 ? chosenLocale
                                 : Locale.init(identifier: "en-US")
+        self.recognizer = SFSpeechRecognizer(locale: supportedLocale)
         
         guard recognizer?.isAvailable == true else {
-            updateState(error: "Speec Recognizer is not available")
+            updateState(error: "Speech Recognizer is not available")
             return
         }
         
@@ -133,6 +134,8 @@ class IosVoiceToTextParser: VoiceToTextParser, ObservableObject {
         
         audioBufferRequest?.endAudio()
         audioBufferRequest = nil
+        
+        audioEngine?.stop()
         
         inputNode?.removeTap(onBus: 0)
         
