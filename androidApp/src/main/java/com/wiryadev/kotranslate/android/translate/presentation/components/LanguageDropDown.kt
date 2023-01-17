@@ -42,36 +42,43 @@ fun LanguageDropDown(
                 )
             }
         }
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable(onClick = onClick)
+                .padding(
+                    vertical = 16.dp,
+                    horizontal = 8.dp,
+                ),
+        ) {
+            AsyncImage(
+                model = selectedLanguage.drawableRes,
+                contentDescription = selectedLanguage.language.langName,
+                modifier = Modifier.size(30.dp),
+            )
+            Spacer(modifier = Modifier.width(12.dp))
+            Text(
+                text = selectedLanguage.language.langName,
+                color = LightBlue,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Icon(
+                imageVector = if (isOpen) {
+                    Icons.Rounded.ArrowDropUp
+                } else Icons.Rounded.ArrowDropDown,
+                contentDescription = stringResource(
+                    id = if (isOpen) R.string.close else R.string.open
+                ),
+                tint = LightBlue,
+//            modifier = Modifier.size(32.dp),
+            )
+        }
     }
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .clickable(onClick = onClick)
-            .padding(16.dp),
-    ) {
-        AsyncImage(
-            model = selectedLanguage.drawableRes,
-            contentDescription = selectedLanguage.language.langName,
-            modifier = Modifier.size(30.dp),
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = selectedLanguage.language.langName,
-            color = LightBlue,
-            overflow = TextOverflow.Clip,
-        )
-        Icon(
-            imageVector = if (isOpen) {
-                Icons.Rounded.ArrowDropUp
-            } else Icons.Rounded.ArrowDropDown,
-            contentDescription = stringResource(
-                id = if (isOpen) R.string.close else R.string.open
-            ),
-            tint = LightBlue,
-            modifier = Modifier.size(30.dp),
-        )
-    }
+
 }
 
 @Composable

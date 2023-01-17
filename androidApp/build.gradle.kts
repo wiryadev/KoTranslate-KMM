@@ -43,6 +43,7 @@ dependencies {
     implementation(Deps.composeMaterial)
     implementation(Deps.activityCompose)
     implementation(Deps.composeIconsExtended)
+    implementation(Deps.composeConstraintLayout)
     implementation(Deps.composeNavigation)
     implementation(Deps.coilCompose)
 

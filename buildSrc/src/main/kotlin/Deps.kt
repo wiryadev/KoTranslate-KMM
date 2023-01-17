@@ -11,6 +11,7 @@ object Deps {
     const val composeFoundation = "androidx.compose.foundation:foundation:$composeVersion"
     const val composeMaterial = "androidx.compose.material:material:$composeVersion"
     const val composeIconsExtended = "androidx.compose.material:material-icons-extended:$composeVersion"
+    const val composeConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 
     private const val composeNavigationVersion = "2.5.3"
     const val composeNavigation = "androidx.navigation:navigation-compose:$composeNavigationVersion"

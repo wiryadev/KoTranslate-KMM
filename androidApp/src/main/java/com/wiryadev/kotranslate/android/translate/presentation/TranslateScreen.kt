@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -19,11 +18,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
-import com.wiryadev.kotranslate.translate.presentation.TranslateEvent
-import com.wiryadev.kotranslate.translate.presentation.TranslateState
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import com.wiryadev.kotranslate.android.R
 import com.wiryadev.kotranslate.android.translate.presentation.components.*
 import com.wiryadev.kotranslate.translate.domain.translate.TranslateError
+import com.wiryadev.kotranslate.translate.presentation.TranslateEvent
+import com.wiryadev.kotranslate.translate.presentation.TranslateState
 import java.util.*
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -77,43 +78,13 @@ fun TranslateScreen(
                 .fillMaxSize()
                 .padding(16.dp),
         ) {
-            // Language Selection Row
+            // Language Picker Row
             item {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                LanguagePicker(
+                    state = state,
+                    onEvent = onEvent,
                     modifier = Modifier.fillMaxWidth(),
-                ) {
-                    LanguageDropDown(
-                        selectedLanguage = state.fromLanguage,
-                        isOpen = state.isChoosingFromLanguage,
-                        onClick = {
-                            onEvent(TranslateEvent.OpenFromLanguageDropDown)
-                        },
-                        onDismiss = {
-                            onEvent(TranslateEvent.StopChoosingLanguage)
-                        },
-                        onSelectLanguage = { language ->
-                            onEvent(TranslateEvent.ChooseFromLanguage(language))
-                        },
-                    )
-                    SwapLanguageButton(
-                        onClick = { onEvent(TranslateEvent.SwapLanguage) },
-                    )
-                    LanguageDropDown(
-                        selectedLanguage = state.toLanguage,
-                        isOpen = state.isChoosingToLanguage,
-                        onClick = {
-                            onEvent(TranslateEvent.OpenToLanguageDropDown)
-                        },
-                        onDismiss = {
-                            onEvent(TranslateEvent.StopChoosingLanguage)
-                        },
-                        onSelectLanguage = { language ->
-                            onEvent(TranslateEvent.ChooseToLanguage(language))
-                        },
-                    )
-                }
+                )
             }
 
             // Translation Text Field
@@ -187,6 +158,72 @@ fun TranslateScreen(
                 )
             }
         }
+    }
+}
 
+@Composable
+private fun LanguagePicker(
+    state: TranslateState,
+    onEvent: (TranslateEvent) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    ConstraintLayout(
+        modifier = modifier,
+    ) {
+        val (
+            fromLanguageDropDown,
+            swapButton,
+            toLanguageDropDown,
+        ) = createRefs()
+
+        LanguageDropDown(
+            selectedLanguage = state.fromLanguage,
+            isOpen = state.isChoosingFromLanguage,
+            onClick = {
+                onEvent(TranslateEvent.OpenFromLanguageDropDown)
+            },
+            onDismiss = {
+                onEvent(TranslateEvent.StopChoosingLanguage)
+            },
+            onSelectLanguage = { language ->
+                onEvent(TranslateEvent.ChooseFromLanguage(language))
+            },
+            modifier = Modifier
+                .constrainAs(fromLanguageDropDown) {
+                    centerVerticallyTo(parent)
+                    start.linkTo(parent.start)
+                    end.linkTo(swapButton.start)
+                    width = Dimension.fillToConstraints
+                },
+        )
+        SwapLanguageButton(
+            onClick = { onEvent(TranslateEvent.SwapLanguage) },
+            modifier = Modifier
+                .constrainAs(swapButton) {
+                    centerVerticallyTo(parent)
+                    centerHorizontallyTo(parent)
+                    width = Dimension.wrapContent
+                },
+        )
+        LanguageDropDown(
+            selectedLanguage = state.toLanguage,
+            isOpen = state.isChoosingToLanguage,
+            onClick = {
+                onEvent(TranslateEvent.OpenToLanguageDropDown)
+            },
+            onDismiss = {
+                onEvent(TranslateEvent.StopChoosingLanguage)
+            },
+            onSelectLanguage = { language ->
+                onEvent(TranslateEvent.ChooseToLanguage(language))
+            },
+            modifier = Modifier
+                .constrainAs(toLanguageDropDown) {
+                    centerVerticallyTo(parent)
+                    start.linkTo(swapButton.end)
+                    end.linkTo(parent.end)
+                    width = Dimension.fillToConstraints
+                },
+        )
     }
 }
