@@ -25,7 +25,7 @@ class TranslateViewModel(
         _state,
         historyDataSource.getHistory()
     ) { state, history ->
-        if (state.history != history) {
+        return@combine if (state.history != history) {
             state.copy(
                 history = history.mapNotNull { item ->
                     UiHistoryItem(

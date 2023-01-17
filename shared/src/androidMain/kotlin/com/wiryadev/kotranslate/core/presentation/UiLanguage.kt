@@ -5,7 +5,7 @@ import com.wiryadev.kotranslate.R
 import com.wiryadev.kotranslate.core.domain.language.Language
 import java.util.Locale
 
-actual class UiLanguage(
+actual data class UiLanguage(
     actual val language: Language,
     @DrawableRes val drawableRes: Int,
 ) {
